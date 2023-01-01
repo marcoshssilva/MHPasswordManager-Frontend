@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  pwa-client:
+    image: mhpasswordmanager/pwa-client:latest
+    container_name: 'pwa-client'
+    restart: on-failure
+    networks:
+      - net-mhpasswordmanager
+    ports:
+      - "80:80"
+networks:
+  net-mhpasswordmanager: # default for project
+    driver: bridge
