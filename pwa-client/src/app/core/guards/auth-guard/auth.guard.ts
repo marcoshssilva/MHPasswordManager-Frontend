@@ -26,8 +26,7 @@ export class AuthGuard implements CanActivate {
               + '&state=' + 'login'
               + '&scope=' + 'user:canSelfRead user:canSelfWrite';
 
-            const encodedUrl = encodeURI(url);
-            window.location.href = encodedUrl;
+            window.location.href = encodeURI(url);
           }
         });
 

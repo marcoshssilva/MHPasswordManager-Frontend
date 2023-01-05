@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {MhTranslateHelperService} from '../core/services/mh-translate-helper.service';
-import {ActivatedRoute} from '@angular/router';
-import {MhAuthService} from '../core/services/http/mh-auth.service';
+import { TranslateService } from '@ngx-translate/core';
+import { MhTranslateHelperService } from '../core/services/mh-translate-helper.service';
+import { ActivatedRoute } from '@angular/router';
+import { MhAuthorizationServerClientService } from '../core/services/http/mh-authorization-server-client.service';
 import { AuthorizationCode } from '../shared/models/AuthorizationCode.interface';
 import { MhAuthorizationHelperService } from '../core/services/mh-authorization-helper.service';
 import { UserDataLocal } from '../shared/models/UserDataLocal.interface';
@@ -20,7 +20,7 @@ export class AuthorizePage implements OnInit {
     private translateHelperService: MhTranslateHelperService,
     private routeSnapshot: ActivatedRoute,
     private navigator: NavController,
-    private mhAuthService: MhAuthService,
+    private mhAuthorizationClientService: MhAuthorizationServerClientService,
     private mhAuthorizationHelper: MhAuthorizationHelperService
   ) { }
 
@@ -32,7 +32,7 @@ export class AuthorizePage implements OnInit {
     this.routeSnapshot.queryParams.subscribe((param) => {
       if (param?.code) {
         const response: AuthorizationCode = { code: param.code, state: param.state };
-        this.mhAuthService.getTokenWithAuthorizationCode(response.code).subscribe((auth)=> {
+        this.mhAuthorizationClientService.getTokenWithAuthorizationCode(response.code).subscribe((auth)=> {
           const userData: UserDataLocal = {
             k1: auth.body.refresh_token,
             k2: auth.body.access_token,
