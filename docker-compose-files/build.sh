@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash/sh
 echo 'mhpasswordmanager-pwa-client...'
 docker build -t mhpasswordmanager/pwa-client:latest ../pwa-client
 
