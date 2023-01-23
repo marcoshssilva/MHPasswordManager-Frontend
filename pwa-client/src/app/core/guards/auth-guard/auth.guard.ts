@@ -15,8 +15,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    this.mhAuthorizationHelperService.getAuthentication()
+    return this.mhAuthorizationHelperService.getAuthentication()
         .then(auth => {
           if (!auth) {
             const clientId = environment.clientId;
@@ -27,10 +26,13 @@ export class AuthGuard implements CanActivate {
               + '&scope=' + 'user:canSelfRead user:canSelfWrite';
 
             window.location.href = encodeURI(url);
+            return false;
+
+          } else {
+            return true;
+
           }
         });
-
-    return true;
   }
 
 }
