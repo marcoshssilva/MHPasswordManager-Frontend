@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { JwtInjectorsInterceptorProvider } from './services/interceptors/jwt-injectors.interceptor';
 
 @NgModule({
   declarations: [],
@@ -30,6 +31,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     HttpClientModule,
     TranslateModule
   ],
-  providers: []
+  providers: [JwtInjectorsInterceptorProvider]
 })
 export class CoreModule {}
