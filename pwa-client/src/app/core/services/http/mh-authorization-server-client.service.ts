@@ -36,8 +36,10 @@ export class MhAuthorizationServerClientService {
 
   getDecodedToken(token: string): Observable<HttpResponse<OAuth2TokenJwtDecoded>> {
     const url = this.authorizationServerUrl + '/oauth2/introspect';
+    const httpHeaders = new HttpHeaders({ Authorization: this.generateBasicAuthHeader(),'Content-Type':'application/x-www-form-urlencoded' }
+    );
     const body = 'token=' + token;
-    return this.http.post<OAuth2TokenJwtDecoded>(url, body, { headers: new HttpHeaders(), observe: 'response' });
+    return this.http.post<OAuth2TokenJwtDecoded>(url, body, { headers: httpHeaders, observe: 'response' });
   }
 
   private generateBasicAuthHeader() {
