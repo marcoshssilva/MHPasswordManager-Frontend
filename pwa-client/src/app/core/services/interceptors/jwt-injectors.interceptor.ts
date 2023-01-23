@@ -20,7 +20,6 @@ export class JwtInjectorsInterceptor implements HttpInterceptor {
         const user = JSON.parse(localStorage.getItem(this.authorizationHelper.AUTH_KEY_USER_LOCAL)) as UserDataLocal;
         if (user && user.k2 && this.hasAnyOfInUrl(req.url)) {
           const reqWithJwt = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + user.k2)});
-          console.log(reqWithJwt);
           return next.handle(reqWithJwt);
         }
         return next.handle(req);
