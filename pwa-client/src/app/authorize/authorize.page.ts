@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { MhAuthorizationServerClientService } from '../core/services/http/mh-authorization-server-client.service';
 import { AuthorizationCode } from '../shared/models/AuthorizationCode.interface';
 import { MhAuthorizationHelperService } from '../core/services/mh-authorization-helper.service';
-import { UserDataLocal } from '../shared/models/UserDataLocal.interface';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -33,13 +32,7 @@ export class AuthorizePage implements OnInit {
       if (param?.code) {
         const response: AuthorizationCode = { code: param.code, state: param.state };
         this.mhAuthorizationClientService.getTokenWithAuthorizationCode(response.code).subscribe((auth)=> {
-          const userData: UserDataLocal = {
-            k1: auth.body.refresh_token,
-            k2: auth.body.access_token,
-            k3: null
-          };
-
-          this.mhAuthorizationHelper.saveAuthentication(userData).then(() => window.location.href = window.location.origin + '/client');
+          this.mhAuthorizationHelper.saveAuthentication(auth.body).then(() => window.location.href = window.location.origin + '/client');
         });
       } else {
         this.navigator.navigateRoot('/client/home');
