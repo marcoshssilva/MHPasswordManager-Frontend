@@ -39,8 +39,10 @@ export class AuthorizePage implements OnInit {
             k3: null
           };
 
-          this.mhAuthorizationHelper.saveAuthentication(userData).then(() => this.navigator.navigateRoot('/client/home'));
+          this.mhAuthorizationHelper.saveAuthentication(userData).then(() => window.location.href = window.location.origin + '/client');
         });
+      } else {
+        this.navigator.navigateRoot('/client/home');
       }
     });
   }
