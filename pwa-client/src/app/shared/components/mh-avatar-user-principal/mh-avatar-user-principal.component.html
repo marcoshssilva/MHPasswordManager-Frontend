@@ -1,14 +1,32 @@
 <ion-toolbar>
 
-  <ion-item button routerLink="client/perfil" (click)="closeMenu()">
+  <ion-item *ngIf="!account" button routerLink="client/perfil" (click)="closeMenu()">
     <ion-avatar slot="start">
-      <ion-skeleton-text style="width: 3rem; height: 3rem;"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 40px; height: 39.2px;"></ion-skeleton-text>
     </ion-avatar>
 
-    <ion-label class="ion-margin">
-      <h2> {{ "user.defaultUserNotLogged" | translate }} </h2>
-      <p> {{ "user.defaultEmailNotLogged" | translate }} </p>
+    <ion-label>
+      <h2>
+        <ion-skeleton-text animated style="width: 50%; height: 14.2px; border-radius: 8px;"></ion-skeleton-text>
+      </h2>
+      <p>
+        <ion-skeleton-text animated style="width: 95%; height: 14px; border-radius: 8px;"></ion-skeleton-text>
+      </p>
     </ion-label>
   </ion-item>
 
+  <ion-item *ngIf="account" button routerLink="client/perfil" (click)="closeMenu()">
+    <ion-avatar slot="start">
+      <ion-img [src]="account?.imageUrl || 'assets/images/profile.jpg' "></ion-img>
+    </ion-avatar>
+
+    <ion-label>
+      <h2>
+        {{ getFullName() }}
+      </h2>
+      <p>
+        {{ account.username }}
+      </p>
+    </ion-label>
+  </ion-item>
 </ion-toolbar>

@@ -14,7 +14,7 @@ import { AccountData } from '../../models/AccountData.interface';
 })
 export class MhAvatarUserPrincipalComponent implements OnInit {
 
-  private account?: AccountData;
+  account?: AccountData;
 
   constructor(
     private menuController: MenuController,
@@ -35,6 +35,10 @@ export class MhAvatarUserPrincipalComponent implements OnInit {
           this.account = res.body;
         });
       });
+  }
+
+  getFullName() {
+    return this.account.firstName + ' ' + this.account.lastName;
   }
 
   closeMenu() {
