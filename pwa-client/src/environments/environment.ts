@@ -9,9 +9,9 @@ export const environment = {
 
   clientSecret: 'fd04f93e-5e4d-4f16-98ae-9247f68d8619',
 
-  authorizationServerUrl: 'http://127.0.0.1:9000',
+  authorizationServerUrl: 'http://127.0.0.1:12010',
 
-  apiGatewayUrl: 'http://127.0.0.1:8765',
+  apiGatewayUrl: 'http://127.0.0.1:12001',
 
   redirectUrl: 'http://127.0.0.1:8100/authorize'
 };
