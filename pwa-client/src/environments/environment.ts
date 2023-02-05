@@ -11,7 +11,7 @@ export const environment = {
 
   authorizationServerUrl: 'http://127.0.0.1:12010',
 
-  apiGatewayUrl: 'http://127.0.0.1:12001',
+  apiGatewayUrl: 'http://127.0.0.1:12050',
 
   redirectUrl: 'http://127.0.0.1:8100/authorize'
 };
