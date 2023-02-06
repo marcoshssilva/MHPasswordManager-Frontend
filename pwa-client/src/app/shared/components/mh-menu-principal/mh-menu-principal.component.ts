@@ -83,7 +83,7 @@ export class MhMenuPrincipalComponent implements OnInit {
     this.messageHelper.showDefaultMessageCannotUse();
   }
 
-  public clickBtnHelp() {
+  public clickBtnExit() {
     this.closeMenu();
     this.messageHelper.showDefaultMessageCannotUse();
   }
