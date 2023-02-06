@@ -15,6 +15,10 @@ export class LocalStorageService {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
+  async removeKey(key: string) {
+    localStorage.removeItem(key);
+  }
+
   nonAsyncGet(key: string) {
     return JSON.parse(localStorage.getItem(key));
   }

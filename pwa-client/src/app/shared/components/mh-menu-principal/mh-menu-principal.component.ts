@@ -3,6 +3,7 @@ import { MenuController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { MhMessageHelperService } from 'src/app/core/services/mh-message-helper.service';
 import { MhTranslateHelperService } from 'src/app/core/services/mh-translate-helper.service';
+import {MhAuthorizationHelperService} from '../../../core/services/mh-authorization-helper.service';
 
 @Component({
   selector: 'app-mh-menu-principal',
@@ -24,7 +25,8 @@ export class MhMenuPrincipalComponent implements OnInit {
     private menuController: MenuController,
     private messageHelper: MhMessageHelperService,
     private translate: TranslateService,
-    private translateHelper: MhTranslateHelperService
+    private translateHelper: MhTranslateHelperService,
+    private authHelper: MhAuthorizationHelperService
   ) { }
 
   async ngOnInit() {
@@ -83,9 +85,9 @@ export class MhMenuPrincipalComponent implements OnInit {
     this.messageHelper.showDefaultMessageCannotUse();
   }
 
-  public clickBtnExit() {
+  public async clickBtnExit() {
     this.closeMenu();
-    this.messageHelper.showDefaultMessageCannotUse();
+    await this.authHelper.logout();
   }
 }
 
