@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { OAuth2TokenJwt } from 'src/app/shared/models/OAuth2TokenJwt.interface';
-import { OAuth2TokenJwtDecoded } from 'src/app/shared/models/OAuth2TokenJwtDecoded.interface';
 import { UserDataLocal } from 'src/app/shared/models/UserDataLocal.interface';
-import { MhAuthorizationServerClientService } from './http/mh-authorization-server-client.service';
 import { LocalStorageService } from './storage/local-storage.service';
 
 @Injectable({
@@ -14,7 +12,6 @@ export class MhAuthorizationHelperService {
 
   constructor(
     private storage: LocalStorageService,
-    private mhAuthorizationServerClient: MhAuthorizationServerClientService
   ) { }
 
   async saveAuthentication(token: OAuth2TokenJwt): Promise<void> {
@@ -31,11 +28,5 @@ export class MhAuthorizationHelperService {
 
   async getAuthentication(): Promise<UserDataLocal> {
     return (await this.storage.get(this.AUTH_KEY_USER_LOCAL)) as UserDataLocal;
-  }
-
-  async getDecodedToken(): Promise<OAuth2TokenJwtDecoded> {
-    const { k2 } = await this.getAuthentication();
-    const { body } = await this.mhAuthorizationServerClient.getDecodedToken(k2).toPromise();
-    return body;
   }
 }
